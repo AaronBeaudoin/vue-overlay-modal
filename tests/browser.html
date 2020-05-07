@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser Test</title>
+
+  <style>
+  .A1 {
+    width: 500px;
+    height: 350px;
+    background-color: red;
+  }
+
+  .A2 {
+    width: 500px;
+    height: 100px;
+    background-color: green;
+  }
+
+  .B1 {
+    width: 400px;
+    height: 70px;
+    background-color: blue;
+  }
+
+  .B2 {
+    width: 400px;
+    height: 200px;
+    background-color: yellow;
+  }
+
+  .C1 {
+    width: 300px;
+    height: 70px;
+    background-color: purple;
+  }
+
+  .C2 {
+    width: 300px;
+    height: 70px;
+    background-color: orange;
+  }
+  
+  .fade-1000-enter-active, .fade-1000-leave-active {
+    transition: opacity 1000ms;
+  }
+
+  .fade-1000-enter, .fade-1000-leave-to {
+    opacity: 0;
+  }
+
+  .fade-2000-enter-active, .fade-2000-leave-active {
+    transition: opacity 2000ms;
+  }
+
+  .fade-2000-enter, .fade-2000-leave-to {
+    opacity: 0;
+  }
+
+  .fade-3000-enter-active, .fade-3000-leave-active {
+    transition: opacity 3000ms;
+  }
+
+  .fade-3000-enter, .fade-3000-leave-to {
+    opacity: 0;
+  }
+
+  .fade-200-enter-active, .fade-200-leave-active {
+    transition: opacity 200ms;
+  }
+
+  .fade-200-enter, .fade-200-leave-to {
+    opacity: 0;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button v-open="$modal.A1">Open A1</button>
+    <overlay-modal name="A1"
+    :transition="`fade-${$modal.A1.closeSpeed}`" class="A1">
+      <button v-open="$modal.B1">Open B1</button>
+      <overlay-modal name="B1"
+      :transition="`fade-${$modal.B1.closeSpeed}`" class="B1">
+      </overlay-modal>
+      <button v-open="$modal.B2">Open B2</button>
+      <overlay-modal name="B2"
+      :transition="`fade-${$modal.B2.closeSpeed}`" class="B2">
+        <button v-open="$modal.C1">Open C1</button>
+        <overlay-modal name="C1"
+        :transition="`fade-${$modal.C1.closeSpeed}`" class="C1">
+        </overlay-modal>
+        <button v-open="$modal.C2">Open C2</button>
+        <overlay-modal name="C2"
+        :transition="`fade-${$modal.C2.closeSpeed}`" class="C2">
+        </overlay-modal>
+      </overlay-modal>
+    </overlay-modal>
+    <button v-open="$modal.A2">Open A2</button>
+    <overlay-modal name="A2"
+    :transition="`fade-${$modal.A2.closeSpeed}`" class="A2">
+    </overlay-modal>
+  </div>
+
+  <script src="https://unpkg.com/lodash"></script>
+  <script src="https://unpkg.com/vue/dist/vue"></script>
+  <script src="../dist/vue-overlay-modal.js"></script>
+  <script>
+  let shpeeedBoost = false ? 200 : null;
+  VueOverlayModal.config({
+    A1: {
+      initActive: true,
+      closeSpeed: shpeeedBoost ? shpeeedBoost : 1000
+    },
+    A2: {
+      initActive: true,
+      closeSpeed: shpeeedBoost ? shpeeedBoost : 3000
+    },
+    B1: {
+      parent: "A1",
+      initActive: true,
+      closeSpeed: shpeeedBoost ? shpeeedBoost : 1000
+    },
+    B2: {
+      parent: "A1",
+      initActive: true,
+      closeSpeed: shpeeedBoost ? shpeeedBoost : 2000
+    },
+    C1: {
+      parent: "B2",
+      initActive: true,
+      closeSpeed: shpeeedBoost ? shpeeedBoost : 2000
+    },
+    C2: {
+      parent: "B2",
+      initActive: true,
+      closeSpeed: shpeeedBoost ? shpeeedBoost : 1000
+    }
+  });
+
+  let app = new Vue({
+    el: "#app"
+  });
+  </script>
+</body>
+</html>
