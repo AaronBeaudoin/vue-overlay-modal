@@ -7,7 +7,7 @@
 		exports["VueOverlayModal"] = factory(require("lodash"));
 	else
 		root["VueOverlayModal"] = factory(root["_"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_lodash__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,105 +91,329 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/main.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ "./node_modules/vue-loader/lib/index.js?!./src/OverlayModal.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib??vue-loader-options!./src/OverlayModal.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"lodash\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n//\n//\n//\n//\n//\n//\n//\n//\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\r\n  name: \"overlay-modal\",\r\n  props: {\r\n    name: { type: String, required: true },\r\n    transition: { type: String }\r\n  },\r\n  created() {\r\n    this.$plugin = this.$options.pluginData;\r\n  },\r\n  mounted() {\r\n    this.$el.addEventListener(\"click\", this.$modal[this.name].keepActive);\r\n    document.addEventListener(\"click\", this.handleGlobalClick);\r\n    this.$plugin.instances += 1;\r\n  },\r\n  destroyed() {\r\n    document.removeEventListener(\"click\", this.handleGlobalClick);\r\n    this.$plugin.instances -= 1;\r\n  },\r\n  methods: {\r\n    handleGlobalClick(event) {\r\n      let modals = this.$plugin.modals;\r\n      let pluginModal = modals[this.name];\r\n\r\n      if (pluginModal.cancelClose) pluginModal.cancelClose = false;\r\n      else if (pluginModal.isActive) this.$plugin.closing.push(this.name);\r\n\r\n      this.$plugin.completed += 1;\r\n      if (this.$plugin.completed === this.$plugin.instances) {\r\n\r\n        Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"forEach\"])(this.$plugin.timeouts, _ => clearTimeout(_.id));\r\n        this.$plugin.timeouts = [];\r\n\r\n        if (this.$plugin.closing.length > 0) this.handleClosingClick(event);\r\n        this.$plugin.completed = 0;\r\n      }\r\n\r\n    },\r\n    handleClosingClick(event) {\r\n      let modals = this.$plugin.modals;\r\n      let calculateTimeout = this.$plugin.calculateTimeout;\r\n      let timeouts = Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"map\"])(this.$plugin.closing, calculateTimeout);\r\n      let adjustTimeout = (_, __) => timeouts[__] -= modals[_].closeSpeed;\r\n\r\n      Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"forEach\"])(this.$plugin.closing, adjustTimeout);\r\n      Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"forEach\"])(this.$plugin.closing, this.handleClosingTimeout(timeouts));\r\n      this.$plugin.closing = [];\r\n    },\r\n    handleClosingTimeout(timeouts) {\r\n      return (name, index) => {\r\n        let close = _ => this.$plugin.modals[name].isActive = false;\r\n        let timeoutId = setTimeout(close, timeouts[index]);\r\n        this.$plugin.timeouts.push({ id: timeoutId, modalName: name });\r\n      };\r\n    }\r\n  }\r\n});\r\n\n\n//# sourceURL=webpack://VueOverlayModal/./src/OverlayModal.vue?./node_modules/vue-loader/lib??vue-loader-options");
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/OverlayModal.vue?vue&type=template&id=7f218636&":
-/*!*******************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/OverlayModal.vue?vue&type=template&id=7f218636& ***!
-  \*******************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"transition\", { attrs: { name: _vm.transition } }, [\n    _c(\n      \"div\",\n      {\n        directives: [\n          {\n            name: \"show\",\n            rawName: \"v-show\",\n            value: _vm.$modal[_vm.name].isActive,\n            expression: \"$modal[name].isActive\"\n          }\n        ],\n        staticClass: \"overlay-modal\"\n      },\n      [_vm._t(\"default\")],\n      2\n    )\n  ])\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://VueOverlayModal/./src/OverlayModal.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return normalizeComponent; });\n/* globals __VUE_SSR_CONTEXT__ */\n\n// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).\n// This module is a runtime utility for cleaner component module output and will\n// be included in the final webpack user bundle.\n\nfunction normalizeComponent (\n  scriptExports,\n  render,\n  staticRenderFns,\n  functionalTemplate,\n  injectStyles,\n  scopeId,\n  moduleIdentifier, /* server only */\n  shadowMode /* vue-cli only */\n) {\n  // Vue.extend constructor export interop\n  var options = typeof scriptExports === 'function'\n    ? scriptExports.options\n    : scriptExports\n\n  // render functions\n  if (render) {\n    options.render = render\n    options.staticRenderFns = staticRenderFns\n    options._compiled = true\n  }\n\n  // functional template\n  if (functionalTemplate) {\n    options.functional = true\n  }\n\n  // scopedId\n  if (scopeId) {\n    options._scopeId = 'data-v-' + scopeId\n  }\n\n  var hook\n  if (moduleIdentifier) { // server build\n    hook = function (context) {\n      // 2.3 injection\n      context =\n        context || // cached call\n        (this.$vnode && this.$vnode.ssrContext) || // stateful\n        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional\n      // 2.2 with runInNewContext: true\n      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {\n        context = __VUE_SSR_CONTEXT__\n      }\n      // inject component styles\n      if (injectStyles) {\n        injectStyles.call(this, context)\n      }\n      // register component module identifier for async chunk inferrence\n      if (context && context._registeredComponents) {\n        context._registeredComponents.add(moduleIdentifier)\n      }\n    }\n    // used by ssr in case component is cached and beforeCreate\n    // never gets called\n    options._ssrRegister = hook\n  } else if (injectStyles) {\n    hook = shadowMode\n      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }\n      : injectStyles\n  }\n\n  if (hook) {\n    if (options.functional) {\n      // for template-only hot-reload because in that case the render fn doesn't\n      // go through the normalizer\n      options._injectStyles = hook\n      // register for functioal component in vue file\n      var originalRender = options.render\n      options.render = function renderWithStyleInjection (h, context) {\n        hook.call(context)\n        return originalRender(h, context)\n      }\n    } else {\n      // inject component registration as beforeCreate hook\n      var existing = options.beforeCreate\n      options.beforeCreate = existing\n        ? [].concat(existing, hook)\n        : [hook]\n    }\n  }\n\n  return {\n    exports: scriptExports,\n    options: options\n  }\n}\n\n\n//# sourceURL=webpack://VueOverlayModal/./node_modules/vue-loader/lib/runtime/componentNormalizer.js?");
-
-/***/ }),
-
-/***/ "./src/OverlayModal.vue":
-/*!******************************!*\
-  !*** ./src/OverlayModal.vue ***!
-  \******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _OverlayModal_vue_vue_type_template_id_7f218636___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OverlayModal.vue?vue&type=template&id=7f218636& */ \"./src/OverlayModal.vue?vue&type=template&id=7f218636&\");\n/* harmony import */ var _OverlayModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OverlayModal.vue?vue&type=script&lang=js& */ \"./src/OverlayModal.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _OverlayModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _OverlayModal_vue_vue_type_template_id_7f218636___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _OverlayModal_vue_vue_type_template_id_7f218636___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/OverlayModal.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://VueOverlayModal/./src/OverlayModal.vue?");
-
-/***/ }),
-
-/***/ "./src/OverlayModal.vue?vue&type=script&lang=js&":
-/*!*******************************************************!*\
-  !*** ./src/OverlayModal.vue?vue&type=script&lang=js& ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_OverlayModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/vue-loader/lib??vue-loader-options!./OverlayModal.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./src/OverlayModal.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_OverlayModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://VueOverlayModal/./src/OverlayModal.vue?");
-
-/***/ }),
-
-/***/ "./src/OverlayModal.vue?vue&type=template&id=7f218636&":
-/*!*************************************************************!*\
-  !*** ./src/OverlayModal.vue?vue&type=template&id=7f218636& ***!
-  \*************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OverlayModal_vue_vue_type_template_id_7f218636___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../node_modules/vue-loader/lib??vue-loader-options!./OverlayModal.vue?vue&type=template&id=7f218636& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/OverlayModal.vue?vue&type=template&id=7f218636&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OverlayModal_vue_vue_type_template_id_7f218636___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OverlayModal_vue_vue_type_template_id_7f218636___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://VueOverlayModal/./src/OverlayModal.vue?");
-
-/***/ }),
-
-/***/ "./src/main.js":
-/*!*********************!*\
-  !*** ./src/main.js ***!
-  \*********************/
-/*! exports provided: config, install, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"config\", function() { return config; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"install\", function() { return install; });\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"lodash\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _OverlayModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OverlayModal */ \"./src/OverlayModal.vue\");\n\r\n\r\n\r\nlet data = undefined;\r\nfunction initPluginData(Vue, config) {\r\n  if (config === undefined) config = {};\r\n  \r\n  let modals = Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"mapValues\"])(config, modal => {\r\n    let initState = { isActive: false, cancelClose: false };\r\n    if (modal.initActive) initState.isActive = true;\r\n    return { ...modal, ...initState };\r\n  });\r\n\r\n  Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"forEach\"])(data.modals, (_, name) => Vue.delete(data.modals, name));\r\n  Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"forEach\"])(modals, (modal, name) => Vue.set(data.modals, name, modal));\r\n  _OverlayModal__WEBPACK_IMPORTED_MODULE_1__[\"default\"].pluginData = data;\r\n};\r\n\r\nfunction initPublicData(Vue) {\r\n  Vue.prototype.$modal = Vue.observable({\r\n    get $closeDelay() { return data.calculateTimeout(); }\r\n  });\r\n\r\n  Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"forEach\"])(data.modals, (modal, name) => {\r\n    Vue.set(Vue.prototype.$modal, name, {\r\n      get isActive() { return modal.isActive; },\r\n      get closeSpeed() { return modal.closeSpeed; },\r\n      keepActive() { modal.cancelClose = true; },\r\n      clickOpen() { modal.isActive = modal.cancelClose = true; },\r\n      open() { modal.isActive = true; },\r\n      close() { modal.isActive = false; }\r\n    });\r\n  });\r\n};\r\n\r\nfunction config(config, Vue) {\r\n  if (Vue === undefined) Vue = window.Vue;\r\n  initPluginData(Vue, config);\r\n  initPublicData(Vue);\r\n};\r\n\r\nfunction install(Vue, config) {\r\n  data = {\r\n    modals: Vue.observable({}),\r\n    instances: 0,\r\n    completed: 0,\r\n    closing: [],\r\n    timeouts: [],\r\n    calculateTimeout(name) {\r\n      let modals = data.modals;\r\n      let childNames = Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"filter\"])(Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"keys\"])(modals), _ => {\r\n        return modals[_].parent === name && modals[_].isActive;\r\n      });\r\n\r\n      let value = name === undefined ? 0 : modals[name].closeSpeed;\r\n      if (childNames.length === 0) return value;\r\n      else {\r\n        let recurse = _ => data.calculateTimeout(_);\r\n        return Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"max\"])(Object(lodash__WEBPACK_IMPORTED_MODULE_0__[\"map\"])(childNames, recurse)) + value;\r\n      }\r\n    }\r\n  };\r\n  \r\n  Vue.directive(\"open\", {\r\n    bind(el, binding) {\r\n      el.addEventListener(\"click\", binding.value.clickOpen);\r\n    }\r\n  });\r\n\r\n  plugin.config(config, Vue);\r\n  Vue.component(_OverlayModal__WEBPACK_IMPORTED_MODULE_1__[\"default\"].name, _OverlayModal__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\r\n  Vue.prototype.$debug = data;\r\n};\r\n\r\nlet plugin = { config: config, install: install };\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (plugin);\r\n\r\nif (typeof window !== \"undefined\" && window.Vue) {\r\n  window.Vue.use(plugin);\r\n}\r\n\n\n//# sourceURL=webpack://VueOverlayModal/./src/main.js?");
-
-/***/ }),
-
-/***/ "lodash":
-/*!*************************************************************************************!*\
-  !*** external {"commonjs":"lodash","commonjs2":"lodash","amd":"lodash","root":"_"} ***!
-  \*************************************************************************************/
-/*! no static exports found */
+/******/ ([
+/* 0 */
 /***/ (function(module, exports) {
 
-eval("module.exports = __WEBPACK_EXTERNAL_MODULE_lodash__;\n\n//# sourceURL=webpack://VueOverlayModal/external_%7B%22commonjs%22:%22lodash%22,%22commonjs2%22:%22lodash%22,%22amd%22:%22lodash%22,%22root%22:%22_%22%7D?");
+module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: external {"commonjs":"lodash","commonjs2":"lodash","amd":"lodash","root":"_"}
+var external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_ = __webpack_require__(0);
+
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/OverlayModal.vue?vue&type=template&id=7f218636&
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("transition", { attrs: { name: _vm.transition } }, [
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.$modal[_vm.name].isActive,
+            expression: "$modal[name].isActive"
+          }
+        ],
+        staticClass: "overlay-modal"
+      },
+      [_vm._t("default")],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+// CONCATENATED MODULE: ./src/OverlayModal.vue?vue&type=template&id=7f218636&
+
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib??vue-loader-options!./src/OverlayModal.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ var OverlayModalvue_type_script_lang_js_ = ({
+  name: "overlay-modal",
+  props: {
+    name: { type: String, required: true },
+    transition: { type: String }
+  },
+  created() {
+    this.$plugin = this.$options.pluginData;
+  },
+  mounted() {
+    this.$el.addEventListener("click", this.$modal[this.name].keepActive);
+    document.addEventListener("click", this.handleGlobalClick);
+    this.$plugin.instances += 1;
+  },
+  destroyed() {
+    document.removeEventListener("click", this.handleGlobalClick);
+    this.$plugin.instances -= 1;
+  },
+  methods: {
+    handleGlobalClick(event) {
+      let modals = this.$plugin.modals;
+      let pluginModal = modals[this.name];
+
+      if (pluginModal.cancelClose) pluginModal.cancelClose = false;
+      else if (pluginModal.isActive) this.$plugin.closing.push(this.name);
+
+      this.$plugin.completed += 1;
+      if (this.$plugin.completed === this.$plugin.instances) {
+
+        Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["forEach"])(this.$plugin.timeouts, _ => clearTimeout(_.id));
+        this.$plugin.timeouts = [];
+
+        if (this.$plugin.closing.length > 0) this.handleClosingClick(event);
+        this.$plugin.completed = 0;
+      }
+
+    },
+    handleClosingClick(event) {
+      let modals = this.$plugin.modals;
+      let calculateTimeout = this.$plugin.calculateTimeout;
+      let timeouts = Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["map"])(this.$plugin.closing, calculateTimeout);
+      let adjustTimeout = (_, __) => timeouts[__] -= modals[_].closeSpeed;
+
+      Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["forEach"])(this.$plugin.closing, adjustTimeout);
+      Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["forEach"])(this.$plugin.closing, this.handleClosingTimeout(timeouts));
+      this.$plugin.closing = [];
+    },
+    handleClosingTimeout(timeouts) {
+      return (name, index) => {
+        let close = _ => this.$plugin.modals[name].isActive = false;
+        let timeoutId = setTimeout(close, timeouts[index]);
+        this.$plugin.timeouts.push({ id: timeoutId, modalName: name });
+      };
+    }
+  }
+});
+
+// CONCATENATED MODULE: ./src/OverlayModal.vue?vue&type=script&lang=js&
+ /* harmony default export */ var src_OverlayModalvue_type_script_lang_js_ = (OverlayModalvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+// CONCATENATED MODULE: ./src/OverlayModal.vue
+
+
+
+
+
+/* normalize component */
+
+var component = normalizeComponent(
+  src_OverlayModalvue_type_script_lang_js_,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/OverlayModal.vue"
+/* harmony default export */ var OverlayModal = (component.exports);
+// CONCATENATED MODULE: ./src/main.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return main_config; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+
+
+
+let data = undefined;
+function initPluginData(Vue, config) {
+  if (config === undefined) config = {};
+  
+  let modals = Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["mapValues"])(config, modal => {
+    let initState = { isActive: false, cancelClose: false };
+    if (modal.initActive) initState.isActive = true;
+    return { ...modal, ...initState };
+  });
+
+  Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["forEach"])(data.modals, (_, name) => Vue.delete(data.modals, name));
+  Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["forEach"])(modals, (modal, name) => Vue.set(data.modals, name, modal));
+  OverlayModal.pluginData = data;
+};
+
+function initPublicData(Vue) {
+  Vue.prototype.$modal = Vue.observable({
+    get $closeDelay() { return data.calculateTimeout(); }
+  });
+
+  Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["forEach"])(data.modals, (modal, name) => {
+    Vue.set(Vue.prototype.$modal, name, {
+      get isActive() { return modal.isActive; },
+      get closeSpeed() { return modal.closeSpeed; },
+      keepActive() { modal.cancelClose = true; },
+      clickOpen() { modal.isActive = modal.cancelClose = true; },
+      open() { modal.isActive = true; },
+      close() { modal.isActive = false; }
+    });
+  });
+};
+
+function main_config(config, Vue) {
+  if (Vue === undefined) Vue = window.Vue;
+  initPluginData(Vue, config);
+  initPublicData(Vue);
+};
+
+function install(Vue, config) {
+  data = {
+    modals: Vue.observable({}),
+    instances: 0,
+    completed: 0,
+    closing: [],
+    timeouts: [],
+    calculateTimeout(name) {
+      let modals = data.modals;
+      let childNames = Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["filter"])(Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["keys"])(modals), _ => {
+        return modals[_].parent === name && modals[_].isActive;
+      });
+
+      let value = name === undefined ? 0 : modals[name].closeSpeed;
+      if (childNames.length === 0) return value;
+      else {
+        let recurse = _ => data.calculateTimeout(_);
+        return Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["max"])(Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["map"])(childNames, recurse)) + value;
+      }
+    }
+  };
+  
+  Vue.directive("open", {
+    bind(el, binding) {
+      el.addEventListener("click", binding.value.clickOpen);
+    }
+  });
+
+  main_plugin.config(config, Vue);
+  Vue.component(OverlayModal.name, OverlayModal);
+  Vue.prototype.$debug = data;
+};
+
+let main_plugin = { config: main_config, install: install };
+/* harmony default export */ var main = __webpack_exports__["default"] = (main_plugin);
+
+if (typeof window !== "undefined" && window.Vue) {
+  window.Vue.use(main_plugin);
+}
+
 
 /***/ })
-
-/******/ });
+/******/ ]);
 });

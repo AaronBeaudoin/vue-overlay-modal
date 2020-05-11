@@ -1,9 +1,14 @@
 {
   "name": "vue-overlay-modal",
+  "description": "Vue plugin for managing nested overlay modals.",
   "author": "Aaron Beaudoin",
   "license": "MIT",
   "version": "1.0.0",
-  "main": "dist/vue-overlay-modal.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AaronBeaudoin/vue-overlay-modal.git"
+  },
+  "main": "dist/vue-overlay-modal.min.js",
   "scripts": {
     "dev": "webpack --env development",
     "prebuild": "webpack --env production",
@@ -15,10 +20,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "animejs": "^3.1.0",
-    "css-loader": "^3.2.0",
     "vue-loader": "^15.7.1",
-    "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.39.3",
     "webpack-bundle-analyzer": "^3.4.1",
