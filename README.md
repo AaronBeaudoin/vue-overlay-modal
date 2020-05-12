@@ -33,7 +33,7 @@ When installed, `vue-overlay-modal` adds the following global features to your V
 
 ## `Vue.prototype.$modal` Object
 
-The `Vue.prototype.$modal` has one static property, but otherwise is dynamically created based on the overlay modals defined at plugin installation or by calling `VueOverlayModal.config`.
+The `Vue.prototype.$modal` object has one static property, but otherwise is dynamically created based on the overlay modals defined at plugin installation or by calling `VueOverlayModal.config`.
 
 ### `$modal.$closeDelay => Number`
 
@@ -73,7 +73,36 @@ When added to an element, causes `click` events on that element to run `$modal.<
 
 ## Overlay Modal Configuration
 
-3 properties
-parent
-initActive
-closeSpeed
+All overlay modals handled by `vue-overlay-modal` must be defined at plugin installation in the second argument to `Vue.use` or by calling `VueOverlayModal.config`. Overlay modals are defined as properties of the config object. The key of the property is the name of the overlay modal and the value is a config object specific to the overlay modal. Overlay modal config objects can have 3 possible properties.
+
+### `parent => String`
+
+The name of the overlay modal's parent, if it is nested within another overlay modal.
+
+### `initActive => Boolean`
+
+Whether or not the overlay modal should be active initially. Defaults to `false`.
+
+### `closeSpeed => Number`
+
+The length of time in milliseconds it will take for the overlay modal to close. This should correspond to the duration of the modal's closing transition, if it has one. If the modal has no closing transition then this property can be left blank, in which case it will internally default to `0`.
+
+### Example Configuration
+
+```js
+Vue.use(VueOverlayModal, {
+  login: {
+    initActive: true,
+    closeSpeed: 500
+  },
+  passwordReset: {
+    parent: "login",
+    closeSpeed: 200
+  }
+});
+```
+
+## Author Information
+
+Designed and implemented by Aaron Beaudoin  
+Written while working as a student at Union College, NE

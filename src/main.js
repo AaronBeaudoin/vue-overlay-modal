@@ -6,9 +6,9 @@ function initPluginData(Vue, config) {
   if (config === undefined) config = {};
   
   let modals = mapValues(config, modal => {
-    let initState = { isActive: false, cancelClose: false };
+    let initState = { closeSpeed: 0, isActive: false, cancelClose: false };
     if (modal.initActive) initState.isActive = true;
-    return { ...modal, ...initState };
+    return { ...initState, ...modal };
   });
 
   forEach(data.modals, (_, name) => Vue.delete(data.modals, name));

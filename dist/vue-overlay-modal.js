@@ -340,9 +340,9 @@ function initPluginData(Vue, config) {
   if (config === undefined) config = {};
   
   let modals = Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["mapValues"])(config, modal => {
-    let initState = { isActive: false, cancelClose: false };
+    let initState = { closeSpeed: 0, isActive: false, cancelClose: false };
     if (modal.initActive) initState.isActive = true;
-    return { ...modal, ...initState };
+    return { ...initState, ...modal };
   });
 
   Object(external_commonjs_lodash_commonjs2_lodash_amd_lodash_root_["forEach"])(data.modals, (_, name) => Vue.delete(data.modals, name));
